@@ -22,7 +22,7 @@
 </div>
 
 # Installation
-I know many people don't care about the motives behind a program. I have put the installation at the top for this reason
+I know many people don't care about the motives behind a program, so I have put the installation at the top.
 
 #### Unix and Mac
 ```shell
