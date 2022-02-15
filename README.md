@@ -21,6 +21,19 @@
   </p>
 </div>
 
+# Installation
+I know many people don't care about the motives behind a program. I have put the installation at the top for this reason
+
+#### Unix and Mac
+```shell
+python3 -m pip install cval
+```
+
+#### Windows
+```powershell
+py -m pip install cval
+```
+
 ## About
 A decently simple script that uses regular expression to add a layer of protection to eval. Why? Well I keep seeing *"eval really is dangerous"* and *"eval is a bad practice"*. All these statements have some validity to them, but there is almost always a better way to do what you want to acomplish. Cval tackles the *"eval really is dangerous"* mindset, if you must use eval for a public project use cval.
 
