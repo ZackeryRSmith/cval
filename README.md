@@ -76,10 +76,10 @@ cval(source='print("Hello, World!")', calls=False, allowed_calls=["print"])
 ##### Block global variables
 ```python
 foo = "bar"
-# You may also add "global password". Due to the current scope we don't need to though
+# You may also add "global foo". Due to the current scope we don't need to though
 
 def foobar():
-  cval(source="password", globals=globals(), gscope=False)  # Will not be able to access "foo"
+  cval(source="foo", globals=globals(), gscope=False)  # Will not be able to access "foo"
 ```
 
 ###### Output:
@@ -92,7 +92,7 @@ cval.SuspiciousSource: Cval found global variable "password" in the source, kill
 def foo():
   bar = "foobar"
   
-  cval(source='password', locals=locals(), lscope=False)  # Will not be able to access "bar"
+  cval(source='bar', locals=locals(), lscope=False)  # Will not be able to access "bar"
 ```
 
 ###### Output:
