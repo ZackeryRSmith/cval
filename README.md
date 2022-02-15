@@ -21,3 +21,36 @@
   </p>
 </div>
 
+
+## Examples
+Some examples. Focused purely on security rather then real world practical examples.
+
+###### Disable module importing
+```python
+cval(source='__import__("os")', modules=False)
+```
+
+###### Allow certain modules
+```python
+cval(source='__import__("os")', modules=False, allowed_modules=["os"])
+```
+
+###### Disable function calls
+```python
+cval(source=input(), calls=False)
+```
+
+###### Allow certain function calls
+```python
+cval(source='print("Hello, World!")', calls=False, allowed_calls=["print"])
+```
+
+###### Block global variables
+```python
+cval(source=input(), globals=globals(), gscope=False)
+```
+
+###### Block local variables
+```python
+cval(source=input(), locals=locals(), lscope=False)
+```
