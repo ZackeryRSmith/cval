@@ -4,7 +4,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/ZackeryRSmith/cval/">
+  <a href="https://github.com/ZackeryRSmith/cval/blob/main/cval.png">
     <img src="https://github.com/ZackeryRSmith/cval/blob/main/cval.png" alt="Cval logo" width="155" height="155">
   </a>
 
