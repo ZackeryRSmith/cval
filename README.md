@@ -43,32 +43,56 @@ I **encourage** you to break my script, report even the smallest vulnerabilities
 ## Examples
 These examples are focused purely on security rather then real world practical examples.
 
-###### Disable module importing
+##### Disable module importing
 ```python
 cval(source='__import__("os")', modules=False)
 ```
 
-###### Allow certain modules
+###### Output:
+```text
+cval.IllegalSource: Cval panicked due to an illegal module import in source
+```
+
+##### Allow certain modules
 ```python
 cval(source='__import__("os")', modules=False, allowed_modules=["os"])
 ```
 
-###### Disable function calls
+##### Disable function calls
 ```python
-cval(source=input(), calls=False)
+cval(source='print("Hello, World!")', calls=False)
 ```
 
-###### Allow certain function calls
+###### Output:
+```text
+cval.IllegalSource: Cval panicked due to an illegal function call in source!
+```
+
+##### Allow certain function calls
 ```python
 cval(source='print("Hello, World!")', calls=False, allowed_calls=["print"])
 ```
 
-###### Block global variables
+##### Block global variables
 ```python
-cval(source=input(), globals=globals(), gscope=False)
+password = "1234"
+
+cval(source="password", globals=globals(), gscope=False)
 ```
 
-###### Block local variables
+###### Output:
+```text
+cval.SuspiciousSource: Cval found global variable "password" in the source, killing for safety
+```
+
+##### Block local variables
 ```python
-cval(source=input(), locals=locals(), lscope=False)
+password = "1234"
+
+cval(source='password', locals=locals(), lscope=False)
+```
+
+###### Output:
+```text
+Cval found local variable "password" in the source, killing for safety
 ```
