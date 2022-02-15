@@ -23,7 +23,6 @@ def cval(
     source: Union[str, bytes, CodeType]             ,
     globals: Optional[Dict[str, Any]]      =...     ,
     locals: Optional[Mapping[str, Any]]    =...     ,
-    smart: Optional[bool]                  =True    ,
     gscope: Optional[bool]                 =False   ,
     lscope: Optional[bool]                 =False   ,
     allowed_modules: Optional[list]        =[]      ,
@@ -57,13 +56,17 @@ def cval(
     if gscope != True and globals != ...:
         for key in list(globals):
             if key in source:
-                raise SuspiciousSource(f'Cval found global variable "{key}" in the source, killing for safety')
+                raise SuspiciousSource(f'Cval found global variable "{key}" in the source, killing for safety.')
     elif gscope == True and globals == ...:
         raise ValueError("gscope activated but globals was never defined!")
     
     # Check if a local variable is being used
-    if lscope != True:
-        pass
+    if lscope != True and globals != ...:
+        for key in list(locals):
+            if key in source:
+                raise SuspiciousSource(f'Cval found local variable "{key}" in the source, killing for safety.')
+    elif lscope == True and locals == ...:
+        raise ValueError("lscope activated but locals was never defined!")
 
     # Check for a module import
     if modules != True:
@@ -75,8 +78,8 @@ def cval(
             else:
                 # Some extra checks
                 if res.group("module").replace("(", "").replace("'", "").replace('"', "").replace(")", "") == "":
-                    raise IllegalSource("Cval panicked due to an attemped module import in source")
-                raise IllegalSource("Cval panicked due to an illegal module import in source")
+                    raise IllegalSource("Cval panicked due to an attemped module import in source!")
+                raise IllegalSource("Cval panicked due to an illegal module import in source!")
     
     # Check for function call
     if calls != True:  # Meaning function calls are not allowed
