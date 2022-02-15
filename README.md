@@ -14,9 +14,9 @@
     A layer of protection for eval
     <br />
     <b>
-      <a href="https://github.com/ZackeryRSmith/Reter/">View Examples</a>
+      <a href="https://github.com/ZackeryRSmith/cval/#examples">View Examples</a>
       ·
-      <a href="https://github.com/ZackeryRSmith/Reter/issues">Report Bug</a>
+      <a href="https://github.com/ZackeryRSmith/cval/issues">Report Bug</a>
     <b/>
   </p>
 </div>
