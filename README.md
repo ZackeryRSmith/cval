@@ -21,6 +21,11 @@
   </p>
 </div>
 
+## About
+A decently simple script that uses regular expression to add a layer of protection to eval. Why? Well I keep seeing *"eval really is dangerous"* and *"eval is a bad practice"*. All these statements have validity to them and there is almost always a better way to do it. Cval tackles the *"eval really is dangerous"* mindset, if you must use eval for a public project use cval.
+
+## Exploiting
+I **encourage** you to break my script, report even the smallest vulrabilitys in the [issues](https://github.com/ZackeryRSmith/cval/issues), thanks!
 
 ## Examples
 Some examples focused purely on security rather then real world practical examples.
