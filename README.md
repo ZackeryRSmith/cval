@@ -17,13 +17,13 @@
       <a href="https://github.com/ZackeryRSmith/cval/#examples">View Examples</a>
       ·
       <a href="https://github.com/ZackeryRSmith/cval/issues">Report Bug</a>
-    <b/>
+    </b>
   </p>
 </div>
 
 
 ## Examples
-Some examples. Focused purely on security rather then real world practical examples.
+Some examples focused purely on security rather then real world practical examples.
 
 ###### Disable module importing
 ```python
