@@ -50,7 +50,7 @@ cval(source='__import__("os")', modules=False)
 
 ###### Output:
 ```text
-cval.IllegalSource: Cval panicked due to an illegal module import in source
+cval.IllegalSource: Cval panicked due to an illegal module import in source!
 ```
 
 ##### Allow certain modules
@@ -82,7 +82,7 @@ cval(source="password", globals=globals(), gscope=False)
 
 ###### Output:
 ```text
-cval.SuspiciousSource: Cval found global variable "password" in the source, killing for safety
+cval.SuspiciousSource: Cval found global variable "password" in the source, killing for safety!
 ```
 
 ##### Block local variables
@@ -94,5 +94,5 @@ cval(source='password', locals=locals(), lscope=False)
 
 ###### Output:
 ```text
-Cval found local variable "password" in the source, killing for safety
+Cval found local variable "password" in the source, killing for safety!
 ```
