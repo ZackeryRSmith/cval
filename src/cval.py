@@ -70,7 +70,7 @@ def cval(
 
     # Check for a module import
     if modules != True:
-        res = search(r"__import__\((?P<module>([^\)])*\))", source)
+        res = search(r"__import__.*\((?P<module>([^\)])*\))t", source)
         if res:
             # Check if module was pardoned
             if res.group("module").replace("(", "").replace("'", "").replace('"', "").replace(")", "") in allowed_modules:
@@ -83,7 +83,7 @@ def cval(
     
     # Check for function call
     if calls != True:  # Meaning function calls are not allowed
-        res = search(r"(?P<function>[a-zA-Z]+)(?P<arguments>\([^\)]*\)(\.[^\)]*\))?)", source)
+        res = search(r"(?P<function>[a-zA-Z][a-zA-Z1-9]+).*(?P<arguments>\([^\)]*\)(\.[^\)]*\))?)", source)
         if res:
             # Check if call was pardoned
             if res.group("function") in allowed_calls:
