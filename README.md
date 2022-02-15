@@ -22,7 +22,7 @@
 </div>
 
 # Installation
-I know many people don't care about the motives behind a program. I have put the installation at the top for this reason
+I know many people don't care about the motives behind a program, so I have put the installation at the top.
 
 #### Unix and Mac
 ```shell
@@ -50,7 +50,7 @@ cval(source='__import__("os")', modules=False)
 
 ###### Output:
 ```text
-cval.IllegalSource: Cval panicked due to an illegal module import in source
+cval.IllegalSource: Cval panicked due to an illegal module import in source!
 ```
 
 ##### Allow certain modules
@@ -75,24 +75,27 @@ cval(source='print("Hello, World!")', calls=False, allowed_calls=["print"])
 
 ##### Block global variables
 ```python
-password = "1234"
+foo = "bar"
+# You may also add "global foo". Due to the current scope we don't need to though
 
-cval(source="password", globals=globals(), gscope=False)
+def foobar():
+  cval(source="foo", globals=globals(), gscope=False)  # Will not be able to access "foo"
 ```
 
 ###### Output:
 ```text
-cval.SuspiciousSource: Cval found global variable "password" in the source, killing for safety
+cval.SuspiciousSource: Cval found global variable "password" in the source, killing for safety!
 ```
 
 ##### Block local variables
 ```python
-password = "1234"
-
-cval(source='password', locals=locals(), lscope=False)
+def foo():
+  bar = "foobar"
+  
+  cval(source='bar', locals=locals(), lscope=False)  # Will not be able to access "bar"
 ```
 
 ###### Output:
 ```text
-Cval found local variable "password" in the source, killing for safety
+Cval found local variable "password" in the source, killing for safety!
 ```
