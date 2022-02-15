@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+src/cval.py
+src/cval.egg-info/PKG-INFO
+src/cval.egg-info/SOURCES.txt
+src/cval.egg-info/dependency_links.txt
+src/cval.egg-info/top_level.txt
