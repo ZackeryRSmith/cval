@@ -27,7 +27,7 @@ def cval(
     gscope: Optional[bool]                 =False   ,
     lscope: Optional[bool]                 =False   ,
     allowed_modules: Optional[list]        =[]      ,
-    import_modules: Optional[bool]         =False   ,
+    modules: Optional[bool]         =False   ,
     allowed_calls: Optional[list]          =[]      ,
     calls: Optional[bool]                  =False   ,
 ):
@@ -48,7 +48,7 @@ def cval(
         
     :param bool gscope: Allow eval to refrence anything from the global scope. !! REQUIRES `globals` TO BE PASSED !!
     :param bool lscope: Allow eval to refrence anything from the local scope. !! REQUIRES `locals` TO BE PASSED !!
-    :param bool import_modules: Allow eval to import packages
+    :param bool modules: Allow eval to import packages 
     :param list allowed_modules: Allow some modules to be used by eval
     :param bool calls: Allow eval to make function calls
     :param list allowed_calls: Allow some functions to be called
@@ -66,7 +66,7 @@ def cval(
         pass
 
     # Check for a module import
-    if import_modules != True:
+    if modules != True:
         res = search(r"__import__\((?P<module>([^\)])*\))", source)
         if res:
             # Check if module was pardoned
