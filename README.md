@@ -28,7 +28,7 @@ A decently simple script that uses regular expression to add a layer of protecti
 I **encourage** you to break my script, report even the smallest vulnerabilities in the [issues](https://github.com/ZackeryRSmith/cval/issues), thanks!
 
 ## Examples
-Some examples focused purely on security rather then real world practical examples.
+These examples are focused purely on security rather then real world practical examples.
 
 ###### Disable module importing
 ```python
