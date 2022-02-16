@@ -24,18 +24,18 @@ class SuspiciousSource(Error):
 
 
 def cval(
-    source: Union[str, bytes, CodeType]             ,
-    globals: Optional[Dict[str, Any]]      =...     ,
-    locals: Optional[Mapping[str, Any]]    =...     ,
-    gscope: Optional[bool]                 =False   ,
-    lscope: Optional[bool]                 =False   ,
-    allowed_modules: Optional[list]        =[]      ,
-    modules: Optional[bool]                =False   ,
-    allowed_calls: Optional[list]          =[]      ,
-    calls: Optional[bool]                  =False   ,
+    source           : Union[str, bytes, CodeType]             ,
+    globals          : Optional[Dict[str, Any]]       =...     ,
+    locals           : Optional[Mapping[str, Any]]    =...     ,
+    gscope           : Optional[bool]                 =False   ,
+    lscope           : Optional[bool]                 =False   ,
+    allowed_modules  : Optional[list]                 =[]      ,
+    modules          : Optional[bool]                 =False   ,
+    allowed_calls    : Optional[list]                 =[]      ,
+    calls            : Optional[bool]                 =False   ,
 ):
     """
-    A safer version of eval and exec
+    A safer version of eval
     
     :: NOTE
     : This is mearly a defence before a statement is sent to eval. If by some means 
