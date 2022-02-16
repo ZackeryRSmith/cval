@@ -6,13 +6,17 @@ from types import (
 )
 from re import *
 
+
 class Error(Exception):
     """ Base error class """
-    pass
+    def __init__(self, message):
+        super().__init__(message)
+        
 
 class IllegalSource(Error):
     """ Used when the source passed goes against the set rules """
     pass
+
 
 class SuspiciousSource(Error):
     """ Used whenever it's not 100% certain the source is illegal """
@@ -26,13 +30,12 @@ def cval(
     gscope: Optional[bool]                 =False   ,
     lscope: Optional[bool]                 =False   ,
     allowed_modules: Optional[list]        =[]      ,
-    modules: Optional[bool]         =False   ,
+    modules: Optional[bool]                =False   ,
     allowed_calls: Optional[list]          =[]      ,
     calls: Optional[bool]                  =False   ,
 ):
     """
-    A safer version of eval, depending on the use case + proper usage 
-    this should patch eval vulnerabilities in your code.
+    A safer version of eval and exec
     
     :: NOTE
     : This is mearly a defence before a statement is sent to eval. If by some means 
@@ -48,8 +51,8 @@ def cval(
     :param bool gscope: Allow eval to refrence anything from the global scope. !! REQUIRES `globals` TO BE PASSED !!
     :param bool lscope: Allow eval to refrence anything from the local scope. !! REQUIRES `locals` TO BE PASSED !!
     :param bool modules: Allow eval to import packages 
-    :param list allowed_modules: Allow some modules to be used by eval
     :param bool calls: Allow eval to make function calls
+    :param list allowed_modules: Allow some modules to be used by eval
     :param list allowed_calls: Allow some functions to be called
     """
     # Check if a global variable is being used
