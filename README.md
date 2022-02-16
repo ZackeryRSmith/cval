@@ -11,7 +11,7 @@
 <h3 align="center">Cval</h3>
 
   <p align="center">
-    A layer of protection for eval
+    A layer of protection for eval and exec
     <br />
     <b>
       <a href="https://github.com/ZackeryRSmith/cval/#examples">View Examples</a>
