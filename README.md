@@ -35,7 +35,7 @@ py -m pip install cval
 ```
 
 ## About
-A decently simple script that uses regular expression to add a layer of protection to eval. Why? Well I keep seeing *"eval really is dangerous"* and *"eval is a bad practice"*. All these statements have some validity to them, but there is almost always a better way to do what you want to acomplish. Cval tackles the *"eval really is dangerous"* mindset, if you must use eval for a public project use cval.
+A decently simple script that uses regular expression to add a layer of protection to eval. Why? Well I keep seeing *"eval really is dangerous"* and *"eval is a bad practice"*. All these statements have some validity to them, and there is almost always a better way to do what you want to acomplish. Cval tackles the *"eval really is dangerous"* mindset, if you must use eval for a public project use cval.
 
 ## Exploiting
 I **encourage** you to break my script, report even the smallest vulnerabilities in the [issues](https://github.com/ZackeryRSmith/cval/issues), thanks!
