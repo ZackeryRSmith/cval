@@ -45,7 +45,7 @@ These examples are focused purely on security rather then real world practical e
 
 ##### Disable module importing
 ```python
-cval(source='__import__("os")', modules=False)
+cval(source='__import__("os")', calls=False, modules=False)
 ```
 
 ###### Output:
@@ -55,7 +55,7 @@ cval.IllegalSource: Cval panicked due to an illegal module import in source!
 
 ##### Allow certain modules
 ```python
-cval(source='__import__("os")', modules=False, allowed_modules=["os"])
+cval(source='__import__("os")', calls=True, modules=False, allowed_modules=["os"])
 ```
 
 ##### Disable function calls
