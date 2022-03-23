@@ -84,7 +84,7 @@ def foobar():
 
 ###### Output:
 ```text
-cval.SuspiciousSource: Cval found global variable "password" in the source, killing for safety!
+cval.SuspiciousSource: Cval found global variable "foo" in the source, killing for safety!
 ```
 
 ##### Block local variables
@@ -97,5 +97,5 @@ def foo():
 
 ###### Output:
 ```text
-Cval found local variable "password" in the source, killing for safety!
+Cval found local variable "bar" in the source, killing for safety!
 ```
