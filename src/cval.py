@@ -1,10 +1,15 @@
-# Safe(er) eval
+# A safer version of Python's eval function
+# Written by ZackeryRSmith, protected by the GNU GPL3.0
 
-from typing import *
-from types import (
-    CodeType
+from typing import (
+    Any      ,
+    Dict     ,
+    Mapping  ,
+    Optional ,
+    Union
 )
-from re import *
+from types import CodeType
+from re    import search
 
 
 class Error(Exception):
@@ -56,7 +61,7 @@ def cval(
     :param list allowed_calls: Allow some functions to be called
     """
     # Check if a global variable is being used
-    if gscope != True and globals != ...:
+    if gscope == False and globals != ...:
         for key in list(globals):
             if key in source:
                 raise SuspiciousSource(f'Cval found global variable "{key}" in the source, killing for safety.')
@@ -64,7 +69,7 @@ def cval(
         raise ValueError("gscope activated but globals was never defined!")
     
     # Check if a local variable is being used
-    if lscope != True and globals != ...:
+    if lscope == False and globals != ...:
         for key in list(locals):
             if key in source:
                 raise SuspiciousSource(f'Cval found local variable "{key}" in the source, killing for safety.')
@@ -72,7 +77,7 @@ def cval(
         raise ValueError("lscope activated but locals was never defined!")
 
     # Check for a module import
-    if modules != True:
+    if modules == False:
         res = search(r"__import__.*\((?P<module>([^\)])*\))t", source)
         if res:
             # Check if module was pardoned
@@ -85,17 +90,15 @@ def cval(
                 raise IllegalSource("Cval panicked due to an illegal module import in source!")
     
     # Check for function call
-    if calls != True:  # Meaning function calls are not allowed
+    if calls == False:
         res = search(r"(?P<function>[a-zA-Z][a-zA-Z1-9]+).*(?P<arguments>\([^\)]*\)(\.[^\)]*\))?)", source)
         if res:
             # Check if call was pardoned
-            if res.group("function") in allowed_calls:
-                pass
-            else:
-                raise IllegalSource("Cval panicked due to an illegal function call in source!")           
+            if res.group("function") in allowed_calls: pass
+            else: raise IllegalSource("Cval panicked due to an illegal function call in source!")           
 
     # Pass parsed source to eval
-    if globals != ... and locals != ...: return eval(source, globals, locals)
-    elif globals != ...: return eval(source, globals)
-    elif locals != ...: return eval(source, locals)
-    else: return eval(source)
+    if   globals != ... and locals != ... : return eval(source, globals, locals)
+    elif globals != ...                   : return eval(source, globals)
+    elif locals  != ...                   : return eval(source, locals)
+    else                                  : return eval(source)
