@@ -1,34 +1,69 @@
-# A bunch of unit tests for seval
+# some tests for cval
 
-from cval import cval, IllegalSource, SuspiciousSource
+from cval import cval, IllegalSource, SuspiciousSource, Warning
 
-# Variables for testing
-username = "abc"
-password = "1234"
+# ONLY USED FOR TESTING
+import os
 
-
-# Accessing global variables
-try:
-    cval("password", globals=globals(), gscope=False)
-except SuspiciousSource:
-    print("Passed `fetch global variable 1`")
-except:
-    print("Failed to pass `fetch global variable 1`")
-
-
-# Importing a module
-try:
-    cval("__import__('os')", import_modules=False)
+# disable module importing 
+# :NOTE: modules is False by default, and the reason we allow function calls
+#        is to see the error given when trying to import a module.
+try: cval('__import__("os")', calls=True, modules=False)
 except IllegalSource:
-    print("Passed `module importing 1`")
-except:
-    print("Failed to pass `module importing 1`")
+    print("Passed test 1")
 
+# allow certain modules
+if cval('__import__("os")', allowed_modules=["os"], allowed_calls=["import"]) == os:
+    print("Passed test 2")
 
-# Calling a function
-try:
-    cval("foo('bar')", calls=False)
-except IllegalSource:
-    print("Passed `calling function 1`")
-except:
-    print("Failed to pass `calling function 1`")
+# allow certain function calls
+cval('print("Passed test 3")', allowed_calls=["print"])
+
+# block access to global variables
+foo = "bar"
+
+def foobar():
+    try: cval('print(foo)', globals=globals(), allowed_calls=["print"])  # Will not be able to access "foo"
+    except SuspiciousSource:
+        print("Passed test 4")
+foobar()
+
+# allow some access to global variables
+foo = "bar"
+
+def foobar():
+    cval('print(foo, end=": ")', globals=globals(), allowed_global_vars=["foo"], allowed_calls=["print"])
+    print("Passed test 5")
+foobar()
+
+# alternativly allow access to all global variables
+foo = "bar"
+bar = "foo"
+
+def foobar():
+    cval('print(bar+foo, end=": ")', globals=globals(), allowed_global_vars=["*"], allowed_calls=["print"])
+    print("Passed test 6")
+foobar()
+
+# block access to local variables
+def fizzbuzz():
+    fizz = "buzz"
+    try: cval('print(fizz)', locals=locals())  # Will not be able to access "fizz"
+    except SuspiciousSource:
+        print("Passed test 7")
+fizzbuzz()
+
+# allow some access to local variables
+def fizzbuzz():
+    fizz = "buzz"
+    cval('print(fizz, end=": ")', locals=locals(), allowed_local_vars=["fizz"], allowed_calls=["print"])
+    print("Passed test 8")
+fizzbuzz()
+
+# alternativly allow access to all local variables
+def fizzbuzz():
+    fizz = "buzz"
+    buzz = "fizz"
+    cval('print(buzz+fizz, end=": ")', locals=locals(), allowed_local_vars=["*"], allowed_calls=["print"])
+    print("Passed test 9")
+fizzbuzz()

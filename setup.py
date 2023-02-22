@@ -13,12 +13,12 @@ from setuptools import find_packages, setup, Command
 
 # Package meta-data.
 NAME = 'cval'
-DESCRIPTION = 'A layer of protection for pythons eval'
+DESCRIPTION = "A layer of protection for python's eval"
 URL = 'https://github.com/ZackeryRSmith/cval'
 EMAIL = 'zackery.smith82307@gmail.com'
 AUTHOR = 'Zackery Smith'
 REQUIRES_PYTHON = '>=3.0.0'
-VERSION = '1.0.1'
+VERSION = '2.0.0'
 
 # Get parent
 here = os.path.abspath(os.path.dirname(__file__))
